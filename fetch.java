@@ -48,7 +48,7 @@ public class fetch
 	LinkedList<String> urls = new LinkedList<String>();
 	
 
-	BufferedReader reader = new BufferedReader(new FileReader("load.dat"));
+	BufferedReader reader = new BufferedReader(new FileReader("top100.dat"));
 	String name;	
 	while((name=reader.readLine())!=null)
 	    {
@@ -63,8 +63,8 @@ public class fetch
 
 	double totalTime = 0;
 
-	int iter = 50;
-
+	int iter = 10;
+        ArrayList<Double> times = new ArrayList<Double>();
 	for(int i=1;i<=iter;i++)
 	    {
 		System.out.println("ITERATION " + i);
@@ -81,12 +81,18 @@ public class fetch
 		    }				
 		
 		writer.println((timeTaken / 1000));
+		times.add(timeTaken);
 		totalTime += timeTaken;		
 	    }	
 	
-	System.out.println("Average time taken: " + (totalTime / (iter * 1000)) + " s");
-
+	System.out.println("Average Time Taken: " + (totalTime / (iter * 1000)) + " s");
+        double average = (totalTime/(iter*1000));
+        double standard = 0;
+        for(Double time : times) {
+          standard += Math.pow(time - average, 2);
+        }
+        standard /= iter;
+	System.out.println("Average Standard Deviation: " +  standard + " s");
 	writer.close();
-
     }
 }
