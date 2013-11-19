@@ -48,7 +48,7 @@ public class fetch
 	LinkedList<String> urls = new LinkedList<String>();
 	
 
-	BufferedReader reader = new BufferedReader(new FileReader("top100.dat"));
+	BufferedReader reader = new BufferedReader(new FileReader("load.dat"));
 	String name;	
 	while((name=reader.readLine())!=null)
 	    {
